@@ -1,17 +1,29 @@
 const fs = require('fs');
 const chalk = require('chalk');
 
-const getNotes = function () {
-    return fs.readFileSync('/Users/cei37/Programming/NodeJS/notes-app/notes.txt', 'utf8');
+const listNotes = () => {
+    const notes = loadNotes()
+    notes.forEach(element => {
+        console.log(chalk.green(element.title), chalk.green(element.body) )
+    });
+}
+
+const readNote = (title) => {
+    const notes = loadNotes()
+    const note = notes.find((note) => note.title === title )
+    if (!note) {
+        console.log(chalk.red.inverse('No note found!'))
+    } else {
+        console.log(chalk.green.inverse(note.title, note.body))
+    }
 }
 
 const addNote = function(title, body) {
     const notes = loadNotes()
 
-    const duplicateNotes = notes.filter(function(note) {
-        return note.title === title
-    })
-    if (duplicateNotes.length === 0) {
+    const duplicateNote = notes.find((note) => note.title === title )
+
+    if (!duplicateNote) {
         notes.push({
             title: title,
             body: body
@@ -55,7 +67,8 @@ const loadNotes = function () {
 }
 
 module.exports = {
-    getNotes: getNotes,
+    listNotes: listNotes,
     addNote: addNote,
-    removeNote: removeNote
+    removeNote: removeNote,
+    readNote: readNote
 }
