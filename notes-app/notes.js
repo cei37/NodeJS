@@ -9,6 +9,7 @@ const listNotes = () => {
 }
 
 const readNote = (title) => {
+    debugger
     const notes = loadNotes()
     const note = notes.find((note) => note.title === title )
     if (!note) {
