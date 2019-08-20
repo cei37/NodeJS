@@ -55,7 +55,14 @@ app.get('/about', (req, res) => {
 })*/
 
 app.get('/weather', (req, res) => {
-    geocode('Austin', (error, {latitude, longitude, location}) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address'
+        })
+    } 
+
+    console.log(req.query.address)
+    geocode(req.query.address, (error, { latitude, longitude, location }) => {
         if (!error) {
             forecast(latitude,longitude, (error, forecastData) => {
                 if (!error) {
@@ -64,12 +71,29 @@ app.get('/weather', (req, res) => {
                         forecastData
                     }])
                 } else {
-                    console.log(error)
+                    res.send([{
+                        error
+                    }])
                 }
             })
         } else {
-            console.log(error)
+            res.send([{
+                error
+            }])
         }
+    })
+})
+
+app.get('/products', (req, res) => {
+    if (!req.query.search) {
+        return res.send({
+            error: 'You must provide a search'
+        })
+    } 
+
+    console.log(req.query.search)
+    res.send({
+        products: []
     })
 })
 
