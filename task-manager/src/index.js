@@ -1,17 +1,23 @@
 const express = require('express')
 require('./db/mongoose')
-const User = require('./models/user')
-const Task = require('./models/task')
+//const User = require('./models/user')
+//const Task = require('./models/task')
 const userRouter = require('./routers/user')
-
+const taskRouter = require('./routers/task')
 
 const app = express()
 const port = process.env.PORT || 3000
 
 app.use(express.json())
 app.use(userRouter)
+app.use(taskRouter)
 
-const router = new express.Router()
+app.listen(port, () => {
+    console.log('Server is up on port ', port)
+})
+
+//const router = new express.Router()
+
 
 /*
 app.post('/users', (req, res) => {
@@ -24,7 +30,7 @@ app.post('/users', (req, res) => {
     })
 })
 */
-
+/*
 app.post('/users', async (req, res) => {
     const user = new User(req.body)
     try {
@@ -90,8 +96,9 @@ app.delete('/users/:id', async (req, res) => {
         console.log(e)
     }
 })
+*/
 
-
+/*
 app.post('/tasks', (req, res) => {
     const task = new Task(req.body)
     task.save().then(() => {
@@ -156,8 +163,5 @@ app.delete('/tasks/:id', async (req, res) => {
         console.log(e)
     }
 })
-
-app.listen(port, () => {
-    console.log('Server is up on port ', port)
-})
+*/
 
