@@ -1,16 +1,18 @@
 const mongoose = require('mongoose')
-const validator = require('validator')
+//const validator = require('validator')
 
-const { MongoClient, ObjectID } = require('mongodb')
+//const { MongoClient, ObjectID } = require('mongodb')
 
-const connectionURL = 'mongodb://127.0.0.1:27017'
-const databaseName = 'task-manager'
+//const connectionURL = 'mongodb://127.0.0.1:27017'
+//const databaseName = 'task-manager'
 
 mongoose.connect('mongodb://127.0.0.1:27017/task-manager-api', {
     useNewUrlParser: true,
-    useCreateIndex: true
+    useCreateIndex: true,
+    useFindAndModify: false
 })
 
+/*
 const User = mongoose.model('user', {
     name: {
         type: String,
@@ -47,7 +49,8 @@ const User = mongoose.model('user', {
         }
     }
 })
-
+*/
+/*
 const Task = mongoose.model('task', {
     description: {
         type: String,
@@ -58,7 +61,7 @@ const Task = mongoose.model('task', {
         requiere: false,
         default: false
     }
-})
+})*/
 /*
 const taks = new Task({
     description: 'This is a task for test',
@@ -71,7 +74,7 @@ taks.save().then((result) => {
     console.log(error)
 }) */
 
-
+/*
 const me = new User({
     name: '   Vicente Villegas  ',
     password: 'this is my yeah',
@@ -82,5 +85,5 @@ me.save().then((result) => {
     console.log(result)
 }).catch((error) => {
     console.log(error)
-})
+})*/
 
